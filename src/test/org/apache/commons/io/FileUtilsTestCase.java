@@ -18,6 +18,7 @@ package org.apache.commons.io;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -139,6 +140,19 @@ public class FileUtilsTestCase extends FileBasedTestCase {
             // expected
         } finally {
             IOUtils.closeQuietly(in);
+        }
+    }
+    
+    public void test_forceDel() throws Exception {
+        File file = new File(getTestDirectory(), "garbage.txt");
+        boolean b;
+        try {
+         FileUtils.forceDelete(file);
+            fail("File Not Found exception");
+        } catch (FileNotFoundException fe) {
+            // expected
+        } finally {
+            
         }
     }
 
